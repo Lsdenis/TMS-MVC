@@ -46,9 +46,11 @@ public class UsersController : Controller
         return View(usersViewModel);
     }
 
+    [HttpPost]
+    //public IActionResult CreateUser([FromQuery]int id, [FromForm]CreateUserViewModel createUserViewModel)
     public IActionResult CreateUser(CreateUserViewModel createUserViewModel)
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
             return RedirectToAction("Index");
         }

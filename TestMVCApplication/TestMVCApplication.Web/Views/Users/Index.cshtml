@@ -11,9 +11,9 @@
         <ul>
             @foreach (var user in Model.Users)
             {
-                <li>@user.Username - @user.LastName @user.FirstName</li>
+                <li>@user.LastName @user.FirstName - @user.Username</li>
             }
         </ul>
     </div>
     @await Html.PartialAsync("_SubmitUser", (CreateUserViewModel)null)
-</div>
+</div> 
