@@ -1,0 +1,8 @@
+﻿@using System.Security.Claims
+@{
+    ViewBag.Title = "I'm authorized";
+    var claims = Context.User.Claims;
+    var username = claims.First(claim => claim.Type == ClaimTypes.Name).Value;
+}
+
+<div class="col-md-12">hello, @username!</div>

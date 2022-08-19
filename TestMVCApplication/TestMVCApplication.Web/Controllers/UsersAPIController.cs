@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using TestMVCApplication.Web.Models;
 
 namespace TestMVCApplication.Web.Controllers;
