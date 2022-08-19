@@ -3,7 +3,7 @@ using TestMVCApplication.Web.Models;
 
 namespace TestMVCApplication.Web.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class UsersAPIController : ControllerBase
 {
@@ -16,6 +16,19 @@ public class UsersAPIController : ControllerBase
 
     [HttpPost]
     public IActionResult Post(CreateUserViewModel createUserViewModel)
+    {
+        UsersController.StaticUsers.Add(new UserViewModel
+        {
+            Username = createUserViewModel.Username,
+            FirstName = createUserViewModel.FirstName,
+            LastName = createUserViewModel.LastName
+        });
+
+        return Created("Users/Index", createUserViewModel);
+    }
+
+    [HttpPost]
+    public IActionResult Post([FromHeader] string contentType, [FromBody]CreateUserViewModel createUserViewModel)
     {
         UsersController.StaticUsers.Add(new UserViewModel
         {
