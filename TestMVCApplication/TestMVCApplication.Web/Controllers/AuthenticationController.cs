@@ -75,7 +75,7 @@ public class AuthenticationController : Controller
         return RedirectToAction("AuthorizedView");
     }
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public IActionResult AuthorizedView()
     {
         return View();
