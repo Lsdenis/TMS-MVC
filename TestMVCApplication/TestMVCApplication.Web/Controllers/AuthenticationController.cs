@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TestMVCApplication.Web.Filters;
 using TestMVCApplication.Web.Models;
 
 namespace TestMVCApplication.Web.Controllers;
 
 public class AuthenticationController : Controller
 {
+    [TestActionFilter]
     public IActionResult Index()
     {
         return View();
