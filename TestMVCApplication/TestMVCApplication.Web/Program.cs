@@ -7,11 +7,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers(options => { options.SuppressAsyncSuffixInActionNames = false; });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
-    options.AccessDeniedPath = new PathString("/Authentication");
+    //options.AccessDeniedPath = new PathString("/Authentication");
     options.LoginPath = new PathString("/Authentication");
     options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
     options.SlidingExpiration = true;
-    options.AccessDeniedPath = "/Forbidden/";
+    options.AccessDeniedPath = "/Authentication/Forbidden/";
 });
 
 var app = builder.Build();

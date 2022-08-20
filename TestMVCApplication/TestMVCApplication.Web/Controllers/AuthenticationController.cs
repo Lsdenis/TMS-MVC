@@ -8,6 +8,7 @@ using TestMVCApplication.Web.Models;
 
 namespace TestMVCApplication.Web.Controllers;
 
+//[Authorize] - Global Auth
 public class AuthenticationController : Controller
 {
     [TestActionFilter]
@@ -17,13 +18,14 @@ public class AuthenticationController : Controller
     }
 
     [HttpPost]
+    //[AllowAnonymous] - Allow anonymous users
     public async Task<IActionResult> Login(LoginViewModel loginViewModel)
     {
         if (!ModelState.IsValid)
         {
             return View("Error");
         }
-
+        
         var user = AuthenticateUser(loginViewModel.Username);
 
         if (user == null)
@@ -73,7 +75,7 @@ public class AuthenticationController : Controller
         return RedirectToAction("AuthorizedView");
     }
 
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public IActionResult AuthorizedView()
     {
         return View();
