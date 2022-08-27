@@ -1,11 +1,14 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TestMVCApplication.Web.Classes;
+using TestMVCApplication.Web.Interfaces;
 using TestMVCApplication.Web.Models;
 
 namespace TestMVCApplication.Web.Controllers;
 
 public class UsersController : Controller
 {
+    private readonly IDependencyClass _dependencyClass;
+
     public static IList<UserViewModel> StaticUsers { get; } = new List<UserViewModel>
     {
         new()
@@ -39,6 +42,11 @@ public class UsersController : Controller
             LastName = "LastName 5"
         }
     };
+
+    public UsersController(IDependencyClass dependencyClass)
+    {
+        _dependencyClass = dependencyClass;
+    }
 
     public IActionResult Index()
     {

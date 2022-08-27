@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using TestMVCApplication.BusinessLogic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<object>(provider => 5);
+builder.Services.AddScoped<IService, Service>();
+// builder.Services.AddSingleton<object>(provider => 5);
+// builder.Services.AddSingleton<IService, Service>();
 builder.Services.AddControllers(options => { options.SuppressAsyncSuffixInActionNames = false; });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
@@ -13,6 +18,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.SlidingExpiration = true;
     options.AccessDeniedPath = "/Authentication/Forbidden/";
 });
+
+// singleton
+// scoped
+// transient
 
 var app = builder.Build();
 
