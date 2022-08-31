@@ -1,7 +1,11 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using TestMVCApplication.BusinessLogic.Services;
+using TestMVCApplication.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
+
+const string databaseSettingName = "name=ConnectionStrings:SQLConnection";
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -9,6 +13,8 @@ builder.Services.AddScoped<object>(provider => 5);
 builder.Services.AddScoped<IService, Service>();
 // builder.Services.AddSingleton<object>(provider => 5);
 // builder.Services.AddSingleton<IService, Service>();
+builder.Services.AddDbContext<UniversitiesDBContext>(optionsBuilder =>
+    optionsBuilder.UseSqlServer(databaseSettingName));
 builder.Services.AddControllers(options => { options.SuppressAsyncSuffixInActionNames = false; });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {

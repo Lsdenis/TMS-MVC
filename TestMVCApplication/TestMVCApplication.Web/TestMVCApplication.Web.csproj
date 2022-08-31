@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestMVCApplication.BusinessLogic\TestMVCApplication.BusinessLogic.csproj" />
+    <ProjectReference Include="..\TestMVCApplication.DAL\TestMVCApplication.DAL.csproj" />
   </ItemGroup>
 
 </Project>
